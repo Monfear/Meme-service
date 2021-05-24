@@ -1,0 +1,50 @@
+.container {
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 5px black;
+    border-radius: 1rem;
+}
+
+.meme {
+    width: 500px;
+    margin-top: 0.5rem;
+    box-shadow: 0 0 10px var(--text-color);
+}
+
+.title {
+    width: 100%;
+    text-transform: capitalize;
+    text-align: center;
+    color: var(--text-color);
+    border: 3px solid var(--secondary-color);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.icons {
+    display: flex;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.up {
+    color: green;
+}
+
+.down {
+    color: red;
+}

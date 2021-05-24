@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { ErrorScreen } from "./components/ErrorScreen";
-import { FormAddMeme } from "./components/FormAddMeme";
 import { Navbar } from "./components/Navbar";
-import { WelcomeScreen } from "./components/WelcomeScreen";
-import { HotMemes } from "./components/HotMemes";
-import { RegularMemes } from "./components/RegularMemes";
+import { ErrorScreen } from "./pages/ErrorScreen";
+import { FormAddMeme } from "./pages/FormAddMeme";
+import { WelcomeScreen } from "./pages/WelcomeScreen";
+import { HotMemes } from "./pages/HotMemes";
+import { RegularMemes } from "./pages/RegularMemes";
 
 function App() {
     return (

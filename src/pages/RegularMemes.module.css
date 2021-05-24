@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loader {
+    width: 100px;
+}
+
+.heading {
+    margin-top: 2rem;
+    color: var(--text-color2);
+}
