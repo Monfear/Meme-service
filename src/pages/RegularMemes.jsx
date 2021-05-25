@@ -1,11 +1,17 @@
 import styles from "./RegularMemes.module.css";
-import { useState } from "react";
-import { memesList } from "./../data/db.js";
-import loaderImg from "./../img/loader.svg";
+import { useContext, useState } from "react";
 import { Meme } from "../components/Meme";
 
+import { MemesContext } from "./../App.jsx";
+// import loaderImg from "./../img/loader.svg";
+
 export const RegularMemes = () => {
-    const [memes, setMemes] = useState(memesList);
+    const memesCtx = useContext(MemesContext);
+
+    const regulars = memesCtx.regularMemes;
+    console.log(regulars);
+
+    const [regularMemes, setRegularMemes] = useState(regulars);
 
     return (
         <div className={styles.container}>
@@ -13,9 +19,8 @@ export const RegularMemes = () => {
             <div className="line"></div>
             {/* <img src={loaderImg} alt="loader" className={styles.loader} /> */}
 
-            {memes.map((meme) => (
-                // <Meme memeX={meme} title={meme.title} imgSrc={meme.img} key={meme.title} upvotes={meme.upvotes} downvotes={meme.downvotes} memes={memes} setMemes={setMemes}></Meme>
-                <Meme memeX={meme} key={meme.title} setMemes={setMemes} memes={memes}></Meme>
+            {regularMemes.map((meme) => (
+                <Meme memeX={meme} key={meme.id}></Meme>
             ))}
         </div>
     );
