@@ -9,6 +9,7 @@ export const memesList = [
         imgSrc: img1,
         upvotes: 7,
         downvotes: 1,
+        isStar: false,
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ export const memesList = [
         imgSrc: img2,
         upvotes: 2,
         downvotes: 5,
+        isStar: false,
     },
     {
         id: 3,
@@ -23,5 +25,6 @@ export const memesList = [
         imgSrc: img3,
         upvotes: 1,
         downvotes: 3,
+        isStar: false,
     },
 ];

@@ -18,7 +18,7 @@ body {
 }
 
 .line {
-    width: 10%;
+    width: 7%;
     height: 0.5rem;
     background-color: var(--secondary-color);
     border-radius: 6rem;

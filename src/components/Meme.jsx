@@ -37,6 +37,23 @@ export const Meme = ({ meme }) => {
         );
     };
 
+    const starringHandler = (memeId) => {
+        memeCtx.setMemes(
+            memeCtx.memes.map((meme) => {
+                if (meme.id === memeId) {
+                    return {
+                        ...meme,
+                        isStar: !meme.isStar,
+                    };
+                } else {
+                    return meme;
+                }
+            })
+        );
+    };
+
+    const iconStar = meme.isStar ? "fas fa-star" : "far fa-star";
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>{meme.title}</h2>
@@ -49,6 +66,7 @@ export const Meme = ({ meme }) => {
                 <i className={`fas fa-thumbs-down ${styles.icon} ${styles.down}`} onClick={() => downvotingHandler(meme.id)}>
                     {meme.downvotes}
                 </i>
+                <i className={`${iconStar} ${styles.icon} ${styles.star}`} onClick={() => starringHandler(meme.id)}></i>
             </div>
         </div>
     );
