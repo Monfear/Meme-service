@@ -10,16 +10,16 @@ import { RegularMemes } from "./pages/RegularMemes";
 
 import { memesList } from "./data/db.js";
 
-export const MemesContext = React.createContext();
+export const MemesContext = React.createContext({
+    memes: [],
+    setMemes: () => {},
+});
 
 function App() {
     const [memes, setMemes] = useState(memesList);
 
-    const filteredRegularMemes = memes.filter((meme) => meme.upvotes - meme.downvotes <= 5);
-    const filteredHotMemes = memes.filter((meme) => meme.upvotes - meme.downvotes > 5);
-
-    const [regularMemes, setRegularMemes] = useState(filteredRegularMemes);
-    const [hotMemes, setHotMemes] = useState(filteredHotMemes);
+    const hotMemes = memes.filter((meme) => meme.upvotes - meme.downvotes > 5);
+    const regularMemes = memes.filter((meme) => meme.upvotes - meme.downvotes <= 5);
 
     return (
         <>
@@ -32,13 +32,13 @@ function App() {
                             <WelcomeScreen></WelcomeScreen>
                         </Route>
 
-                        <MemesContext.Provider value={{ memes, setMemes, regularMemes, setRegularMemes }}>
+                        <MemesContext.Provider value={{ memes, setMemes }}>
                             <Route path="/hot">
-                                <HotMemes></HotMemes>
+                                <HotMemes memes={hotMemes}></HotMemes>
                             </Route>
 
                             <Route path="/regular">
-                                <RegularMemes></RegularMemes>
+                                <RegularMemes memes={regularMemes}></RegularMemes>
                             </Route>
 
                             <Route path="/form">

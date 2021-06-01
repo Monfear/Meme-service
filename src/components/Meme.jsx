@@ -1,24 +1,40 @@
 import styles from "./Meme.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 import { MemesContext } from "./../App.jsx";
 
-export const Meme = ({ memeX }) => {
-    const [meme, setMeme] = useState(memeX);
+export const Meme = ({ meme }) => {
+    // const { memes, setMemes } = useContext(MemesContext);
+    const memeCtx = useContext(MemesContext);
 
-    const memesCtx = useContext(MemesContext);
-
-    const upvotingHandler = () => {
-        console.log(meme);
-        setMeme({ ...meme, upvotes: meme.upvotes + 1 });
-
-        console.log(memesCtx.memes);
+    const upvotingHandler = (memeId) => {
+        memeCtx.setMemes(
+            memeCtx.memes.map((meme) => {
+                if (meme.id === memeId) {
+                    return {
+                        ...meme,
+                        upvotes: meme.upvotes + 1,
+                    };
+                } else {
+                    return meme;
+                }
+            })
+        );
     };
 
-    const downvotingHandler = () => {
-        console.log(meme);
-        setMeme({ ...meme, downvotes: meme.downvotes + 1 });
-        console.log(meme);
+    const downvotingHandler = (memeId) => {
+        memeCtx.setMemes(
+            memeCtx.memes.map((meme) => {
+                if (meme.id === memeId) {
+                    return {
+                        ...meme,
+                        downvotes: meme.downvotes + 1,
+                    };
+                } else {
+                    return meme;
+                }
+            })
+        );
     };
 
     return (
@@ -27,10 +43,10 @@ export const Meme = ({ memeX }) => {
             <img src={meme.imgSrc} alt={meme.title} key={meme.id} className={styles.meme}></img>
 
             <div className={styles.icons}>
-                <i className={`fas fa-thumbs-up ${styles.icon} ${styles.up}`} onClick={upvotingHandler}>
+                <i className={`fas fa-thumbs-up ${styles.icon} ${styles.up}`} onClick={() => upvotingHandler(meme.id)}>
                     {meme.upvotes}
                 </i>
-                <i className={`fas fa-thumbs-down ${styles.icon} ${styles.down}`} onClick={downvotingHandler}>
+                <i className={`fas fa-thumbs-down ${styles.icon} ${styles.down}`} onClick={() => downvotingHandler(meme.id)}>
                     {meme.downvotes}
                 </i>
             </div>
