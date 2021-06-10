@@ -2,9 +2,11 @@ import img1 from "./../img/memes/01. autosave.jpg";
 import img2 from "./../img/memes/02. koszmary.jpg";
 import img3 from "./../img/memes/03. polaczone_sily.jpg";
 
+const uniqid = require("uniqid");
+
 export const memesList = [
     {
-        id: 1,
+        id: uniqid(),
         title: "autosave",
         imgSrc: img1,
         upvotes: 7,
@@ -12,7 +14,7 @@ export const memesList = [
         isStar: false,
     },
     {
-        id: 2,
+        id: uniqid(),
         title: "nightmares",
         imgSrc: img2,
         upvotes: 2,
@@ -20,7 +22,7 @@ export const memesList = [
         isStar: false,
     },
     {
-        id: 3,
+        id: uniqid(),
         title: "combined forces",
         imgSrc: img3,
         upvotes: 1,

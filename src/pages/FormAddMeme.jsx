@@ -1,29 +1,55 @@
-import { useState } from "react";
+import styles from "./FormAddMemes.module.css";
 
-import { Meme } from "./../components/Meme";
+import { useContext, useRef } from "react";
+import { MemesContext } from "./../App.jsx";
+import { Button } from "../components/UI/Button";
 
 export const FormAddMeme = () => {
-    const [meme, setMeme] = useState("");
+    const nameRef = useRef(null);
+    const imgRef = useRef(null);
+
+    const memeCtx = useContext(MemesContext);
 
     const createMeme = (e) => {
         e.preventDefault();
 
-        const [file] = e.target.children[2].files;
-        setMeme(URL.createObjectURL(file));
+        const [file] = imgRef.current.files;
+        const name = nameRef.current.value;
 
-        console.log(e.target.children[2].files);
-        console.log(URL.createObjectURL(file));
+        if (!file || !name) {
+            console.log("no file or name");
+            return;
+        }
+
+        const imgSrc = URL.createObjectURL(file);
+
+        const uniqid = require("uniqid");
+
+        memeCtx.setMemes([
+            ...memeCtx.memes,
+            {
+                id: uniqid(),
+                title: name,
+                imgSrc: imgSrc,
+                upvotes: 0,
+                downvotes: 0,
+                isStar: false,
+            },
+        ]);
+
+        nameRef.current.value = null;
+        imgRef.current.value = null;
     };
 
     return (
-        <form onSubmit={createMeme}>
-            <h2>Form</h2>
+        <form onSubmit={createMeme} className={styles.form}>
+            <h2>You can add your meme here</h2>
+            <h3>Just enter name and choose the file</h3>
 
-            <input type="text" />
-            <input type="file" />
-            <button>Create</button>
+            <input type="text" ref={nameRef} id="name" className={styles.nameInput} placeholder="Name" />
 
-            {meme ? <img src={meme} alt="meme" style={{ width: "500px" }} /> : null}
+            <input type="file" ref={imgRef} id="file" className={styles.fileInput} />
+            <Button>Create</Button>
         </form>
     );
 };

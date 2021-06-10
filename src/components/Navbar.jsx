@@ -12,17 +12,17 @@ export const Navbar = () => {
             </NavLink>
             <ul className={styles.ul}>
                 <li>
-                    <NavLink to="/hot" className={styles.link}>
+                    <NavLink to="/hot" className={styles.link} activeStyle={{ color: "gold" }}>
                         Hot
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/regular" className={styles.link}>
+                    <NavLink to="/regular" className={styles.link} activeStyle={{ color: "gold" }}>
                         Regular
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/form" className={`${styles.link} ${styles.form}`}>
+                    <NavLink to="/form" className={`${styles.link} ${styles.form}`} activeStyle={{ color: "gold" }}>
                         Add meme
                     </NavLink>
                 </li>
