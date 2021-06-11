@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import styles from "./WelcomeScreen.module.css";
-import laughImg from "./../img/laugh.jpg";
-import { Button } from "../components/UI/Button";
-import { Line } from "./../components/UI/Line";
+import laughImg from "./../../img/laugh.jpg";
+import { Button } from "./../../components/UI/Button";
+import { Line } from "./../UI/Line";
 
 export const WelcomeScreen = () => {
     return (

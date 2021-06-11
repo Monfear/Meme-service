@@ -1,7 +1,7 @@
 import styles from "./Meme.module.css";
 import { useContext } from "react";
 
-import { MemesContext } from "./../App.jsx";
+import { MemesContext } from "./../../App";
 
 export const Meme = ({ meme }) => {
     // const { memes, setMemes } = useContext(MemesContext);

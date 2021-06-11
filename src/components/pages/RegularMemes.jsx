@@ -1,5 +1,5 @@
 import styles from "./RegularMemes.module.css";
-import { Meme } from "../components/Meme";
+import { Meme } from "./../Meme/Meme";
 
 // import loaderImg from "./../img/loader.svg";
 

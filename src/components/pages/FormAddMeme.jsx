@@ -1,8 +1,8 @@
 import styles from "./FormAddMemes.module.css";
 
 import { useContext, useRef } from "react";
-import { MemesContext } from "./../App.jsx";
-import { Button } from "../components/UI/Button";
+import { MemesContext } from "./../../App";
+import { Button } from "./../UI/Button";
 
 export const FormAddMeme = () => {
     const nameRef = useRef(null);

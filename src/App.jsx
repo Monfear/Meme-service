@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Navbar } from "./components/Navbar";
-import { ErrorScreen } from "./pages/ErrorScreen";
-import { FormAddMeme } from "./pages/FormAddMeme";
-import { WelcomeScreen } from "./pages/WelcomeScreen";
-import { HotMemes } from "./pages/HotMemes";
-import { RegularMemes } from "./pages/RegularMemes";
+import { Navbar } from "./components/Layout/Navbar";
+
+import { ErrorScreen } from "./components/pages/ErrorScreen";
+import { FormAddMeme } from "./components/pages/FormAddMeme";
+import { WelcomeScreen } from "./components/pages/WelcomeScreen";
+import { HotMemes } from "./components/pages/HotMemes";
+import { RegularMemes } from "./components/pages/RegularMemes";
 
 import { memesList } from "./data/db.js";
 
