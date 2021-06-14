@@ -27,31 +27,28 @@ function App() {
             <Router>
                 <Navbar></Navbar>
 
-                <div>
+                <MemesContext.Provider value={{ memes, setMemes }}>
                     <Switch>
                         <Route path="/" exact>
                             <WelcomeScreen></WelcomeScreen>
                         </Route>
+                        <Route path="/hot">
+                            <HotMemes memes={hotMemes}></HotMemes>
+                        </Route>
 
-                        <MemesContext.Provider value={{ memes, setMemes }}>
-                            <Route path="/hot">
-                                <HotMemes memes={hotMemes}></HotMemes>
-                            </Route>
+                        <Route path="/regular">
+                            <RegularMemes memes={regularMemes}></RegularMemes>
+                        </Route>
 
-                            <Route path="/regular">
-                                <RegularMemes memes={regularMemes}></RegularMemes>
-                            </Route>
-
-                            <Route path="/form">
-                                <FormAddMeme></FormAddMeme>
-                            </Route>
-                        </MemesContext.Provider>
+                        <Route path="/form">
+                            <FormAddMeme></FormAddMeme>
+                        </Route>
 
                         <Route path="*">
                             <ErrorScreen></ErrorScreen>
                         </Route>
                     </Switch>
-                </div>
+                </MemesContext.Provider>
             </Router>
         </>
     );
