@@ -7,7 +7,6 @@
     padding: 2rem;
     box-shadow: 0 0 5px black;
     border-radius: 1rem;
-    /* position: relative; */
 }
 
 .meme {
@@ -55,4 +54,14 @@
     color: yellow;
     position: absolute;
     left: 15rem;
+}
+
+@media screen and (max-width: 500px) {
+    .meme {
+        width: 250px;
+    }
+
+    .star {
+        left: 9rem;
+    }
 }
