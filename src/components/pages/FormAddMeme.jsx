@@ -1,10 +1,14 @@
 import styles from "./FormAddMemes.module.css";
 
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { MemesContext } from "./../../App";
 import { Button } from "./../UI/Button";
+import { Modal } from "../Layout/Modal";
 
 export const FormAddMeme = () => {
+    const [isFormValid, setIsFormValid] = useState(null);
+    const [isFormInvalid, setIsFormInvalid] = useState(null);
+
     const nameRef = useRef(null);
     const imgRef = useRef(null);
 
@@ -12,18 +16,19 @@ export const FormAddMeme = () => {
 
     const createMeme = (e) => {
         e.preventDefault();
+        const uniqid = require("uniqid");
 
         const [file] = imgRef.current.files;
         const name = nameRef.current.value;
 
-        if (!file || !name) {
-            console.log("no file or name");
+        if (!file || file.type !== "image/jpeg" || !name || name.length > 25 || name.length < 5) {
+            setIsFormInvalid(true);
             return;
+        } else {
+            setIsFormValid(true);
         }
 
         const imgSrc = URL.createObjectURL(file);
-
-        const uniqid = require("uniqid");
 
         memeCtx.setMemes([
             ...memeCtx.memes,
@@ -42,14 +47,19 @@ export const FormAddMeme = () => {
     };
 
     return (
-        <form onSubmit={createMeme} className={styles.form}>
-            <h2>You can add your meme here</h2>
-            <h3>Just enter name and choose the file</h3>
+        <>
+            {isFormValid && <Modal></Modal>}
 
-            <input type="text" ref={nameRef} id="name" className={styles.nameInput} placeholder="Name" />
+            <form onSubmit={createMeme} className={styles.form}>
+                <h2>You can add your meme here</h2>
+                <h3>Just enter name and choose the file</h3>
 
-            <input type="file" ref={imgRef} id="file" className={styles.fileInput} />
-            <Button>Create</Button>
-        </form>
+                <input type="text" ref={nameRef} id="name" className={styles.nameInput} placeholder="Name" />
+
+                <input type="file" ref={imgRef} id="file" className={styles.fileInput} />
+                {isFormInvalid && <p style={{ color: "red" }}>Something went wrong, incorrect/missing name or file.</p>}
+                <Button>Create</Button>
+            </form>
+        </>
     );
 };
