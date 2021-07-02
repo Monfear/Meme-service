@@ -21,29 +21,28 @@ export const FormAddMeme = () => {
         const [file] = imgRef.current.files;
         const name = nameRef.current.value;
 
-        if (!file || file.type !== "image/jpeg" || !name || name.length > 25 || name.length < 5) {
+        if (!file || (file.type !== "image/jpeg" && file.type !== "image/png") || !name || name.length > 25 || name.length < 5) {
             setIsFormInvalid(true);
-            return;
         } else {
             setIsFormValid(true);
+
+            const imgSrc = URL.createObjectURL(file);
+
+            memeCtx.setMemes([
+                ...memeCtx.memes,
+                {
+                    id: uniqid(),
+                    title: name,
+                    imgSrc: imgSrc,
+                    upvotes: 0,
+                    downvotes: 0,
+                    isStar: false,
+                },
+            ]);
+
+            nameRef.current.value = null;
+            imgRef.current.value = null;
         }
-
-        const imgSrc = URL.createObjectURL(file);
-
-        memeCtx.setMemes([
-            ...memeCtx.memes,
-            {
-                id: uniqid(),
-                title: name,
-                imgSrc: imgSrc,
-                upvotes: 0,
-                downvotes: 0,
-                isStar: false,
-            },
-        ]);
-
-        nameRef.current.value = null;
-        imgRef.current.value = null;
     };
 
     return (
